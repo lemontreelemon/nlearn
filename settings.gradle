@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
         mavenCentral()
@@ -14,3 +14,13 @@ dependencyResolutionManagement {
 }
 rootProject.name = "learn"
 include ':app'
+
+//1.注意文件的书写，带后缀，关联到flutter module下的.android 目录下的这个文件
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,"flearn/.android/include_flutter.groovy"
+))
+
+
+include ':flearn'
+project(':flearn').projectDir = new File('../flearn')
